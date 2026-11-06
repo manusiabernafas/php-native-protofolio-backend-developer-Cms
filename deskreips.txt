@@ -1,0 +1,56 @@
+Template portofolio untuk backend engineer, DevOps, system architect, dan insinyur dengan gaya gambar teknik cetak biru. Latar biru bergaris grid, kepala halaman berupa blok judul gambar kerja, kursor berubah menjadi crosshair dengan koordinat, dan tumpukan arsitektur isometrik 3D yang terurai lapis demi lapis saat halaman di-scroll. Proyek ditampilkan sebagai lembar gambar yang berbalik 3D, teknologi sebagai daftar komponen (BOM), layanan sebagai diagram alir, dan riwayat karier sebagai diagram Gantt.
+
+Semua isi dikelola dari CMS: profil, foto, CV, proyek dengan galeri, 70+ logo teknologi, pengalaman, layanan, testimoni, dan pesan masuk dari formulir work order. Data contoh sudah lengkap dengan diagram ilustrasi bergaya blueprint sehingga portofolio langsung terlihat profesional.
+Cara kerja
+Halaman depan dibangun dari data MySQL: setiap kategori teknologi otomatis menjadi satu lapisan di tumpukan isometrik hero lengkap dengan logonya, angka tahun berkarya dan jumlah klien dihitung sendiri, nomor lembar di pojok kanan atas berubah mengikuti bagian yang sedang dibaca, dan diagram Gantt karier digambar dari bulan mulai dan selesai setiap pengalaman. Tumpukan isometrik dibuat murni dengan CSS 3D, lalu jarak antar lapis diperlebar oleh JavaScript sesuai posisi scroll.
+
+Setiap proyek punya lembar detail dengan blok judul, cover yang bisa diperiksa dengan kaca pembesar 2x, tabel spesifikasi (klien, peran, tahun, durasi, jumlah dilihat, komponen), cerita berformat, galeri detail dengan lightbox, dan navigasi lembar sebelum/berikutnya. Jumlah dilihat dihitung sekali per sesi dan kunjungan harian dicatat untuk grafik dashboard.
+
+CMS dilindungi password hash, CSRF, kunci setelah 5 kali gagal login, dan pembatalan sesi lain saat password diganti. Upload gambar diperiksa tipe aslinya dan digambar ulang menjadi WebP. Formulir work order dikirim tanpa reload dengan honeypot, batas 3 pesan per 10 menit per IP, dan penolakan pesan dobel; kotak masuk bisa diekspor ke CSV yang aman dibuka di Excel.
+Fitur
+Gaya gambar teknik cetak biru: grid putih, anotasi ukuran, blok judul (flat, tanpa gradasi & tanpa emoji)
+Tumpukan arsitektur isometrik 3D CSS yang terurai (exploded view) saat di-scroll
+Setiap kategori teknologi otomatis menjadi satu lapisan tumpukan lengkap dengan logonya
+Kursor crosshair dengan koordinat X/Y (khusus mouse)
+Nomor lembar di header berubah mengikuti bagian yang sedang dibaca
+Kartu proyek berbalik 3D menampilkan detail, klien, peran, dan logo teknologi
+Daftar komponen (BOM) dengan indikator penguasaan bersegmen
+Layanan sebagai modul diagram alir dengan panah penghubung
+Riwayat karier & pendidikan otomatis digambar sebagai diagram Gantt
+Testimoni sebagai catatan revisi klien
+Formulir kontak bergaya work order dengan pilihan anggaran
+Lembar detail proyek dengan kaca pembesar 2x di cover, tabel spesifikasi, galeri + lightbox
+Garis ukuran yang tergambar dan bar Gantt yang memanjang saat di-scroll
+CMS lengkap: profil, foto, CV PDF, proyek + galeri, 70+ logo teknologi, pengalaman, layanan, testimoni, pesan
+4 kombinasi warna blueprint dari CMS
+Dashboard pengunjung 30 hari, grafik 14 hari, proyek terpopuler, pesan terbaru
+Upload gambar otomatis jadi WebP, folder upload anti-eksekusi script
+Keamanan: PDO, CSRF, password_hash, kunci login, sesi batal saat ganti password
+Honeypot + batas kirim per IP + tolak pesan dobel, CSV aman dari formula injection
+Responsif HP 390px sampai 1920px, animasi mati otomatis untuk mode kurangi gerakan
+Data contoh lengkap dengan 30+ diagram ilustrasi blueprint, PHP Native tanpa framework
+Panduan instalasi
+Kebutuhan: PHP 8.1 atau lebih baru (ekstensi GD aktif, bawaan XAMPP) dan MySQL/MariaDB.
+
+Ekstrak ZIP lalu pindahkan folder porto-blueprint ke:
+
+XAMPP: C:\xampp\htdocs\porto-blueprint
+Laragon: C:\laragon\www\porto-blueprint
+Jalankan Apache dan MySQL.
+
+Buka http://localhost/phpmyadmin → Import → pilih database/porto_blueprint.sql → Import.
+
+Atau lewat terminal:
+
+mysql -u root -p < database/porto_blueprint.sql
+Sesuaikan config/database.php jika user/password MySQL kamu berbeda.
+
+Buka situs: http://localhost/porto-blueprint/
+
+CMS: http://localhost/porto-blueprint/index.php?page=login (atau sel CMS di footer)
+
+Username: admin
+Password: admin123 (segera ganti di menu Akun)
+Ganti profil, proyek, dan teknologi dari CMS, lalu upload ke hosting.
+
+Tips: naikkan upload_max_filesize dan post_max_size di php.ini (misal 20M) untuk mengunggah diagram beresolusi besar.
